@@ -7,7 +7,22 @@ var Agente = mongose.model('Agente');
 
 //Recuperar lista de agentes
 router.get('/',function(req, res, next){
-    Agente.find().exec(function(err,list){
+    var name= req.query.name;
+    var age= req.query.age;
+
+    var limit = parseInt(req.query.limit) || null;
+
+    var filter = {};
+
+    if(name){
+        filter.name= name;
+    }
+    
+    if(typeof age !== 'undefined') {
+        filter.age= age;
+    }
+
+    Agente.list(filter, limit, function(err,list){
         if (err){
             next(err);
             return;

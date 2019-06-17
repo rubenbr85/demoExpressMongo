@@ -7,4 +7,11 @@ var agenteShema = mongoose.Schema({
     age: Number
 });
 
-mongoose.model('Agente',agenteShema);
+agenteShema.statics.list = function(filter, limit, cb){
+    var query = Agente.find(filter);
+    query.limit(limit);
+    query.exec(cb);
+};
+
+
+var Agente = mongoose.model('Agente',agenteShema);
