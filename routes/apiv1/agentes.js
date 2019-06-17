@@ -42,5 +42,14 @@ router.put('/:id', function(req, res, next){
 });
 
 //Borrar un agente
+router.delete('/:id', function(req, res, next){
+    var id = req.params.id;
+    Agente.remove({_id:id}, function(err, result){
+        if(err){
+            return next(err);
+        }
+        res.json({ok: true, result: result});
+    });
+});
 
 module.exports = router;
