@@ -10,6 +10,7 @@ var clients = require('./routes/clients');
 var app = express();
 
 require('./lib/connectMongoose');
+require('./models/agente');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -29,6 +30,7 @@ app.use(function(req, res, next){
 
 app.use('/', indexRouter);
 app.use('/clients',clients);
+app.use('/apiv1/agentes', require('./routes/apiv1/agentes'));
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
