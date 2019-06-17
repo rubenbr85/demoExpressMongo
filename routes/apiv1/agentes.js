@@ -25,13 +25,21 @@ router.post('/', function(req, res, next){
         if(err){
             return next(err);
         }
-
         res.json({ok: true, agente: agenteGuardado});
     });
 
 });
 
 //Actualizar un agente
+router.put('/:id', function(req, res, next){
+    var id = req.params.id;
+    Agente.update({_id: id}, req.body, function(err, agente){
+        if(err){
+            return next(err);
+        }
+        res.json({ok: true, agente: agente});
+    });
+});
 
 //Borrar un agente
 
