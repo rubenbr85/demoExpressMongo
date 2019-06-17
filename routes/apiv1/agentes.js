@@ -12,6 +12,8 @@ router.get('/',function(req, res, next){
 
     var limit = parseInt(req.query.limit) || null;
     var skip = parseInt(req.query.skip) || null;
+    var fields = req.query.fields || null;
+    var sort = req.query.sort || null;
 
     var filter = {};
 
@@ -23,7 +25,7 @@ router.get('/',function(req, res, next){
         filter.age= age;
     }
 
-    Agente.list(filter, limit, skip, function(err,list){
+    Agente.list(filter, limit, skip, fields, sort, function(err,list){
         if (err){
             next(err);
             return;
