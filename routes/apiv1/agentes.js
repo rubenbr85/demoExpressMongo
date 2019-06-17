@@ -11,6 +11,7 @@ router.get('/',function(req, res, next){
     var age= req.query.age;
 
     var limit = parseInt(req.query.limit) || null;
+    var skip = parseInt(req.query.skip) || null;
 
     var filter = {};
 
@@ -22,7 +23,7 @@ router.get('/',function(req, res, next){
         filter.age= age;
     }
 
-    Agente.list(filter, limit, function(err,list){
+    Agente.list(filter, limit, skip, function(err,list){
         if (err){
             next(err);
             return;
